@@ -1,5 +1,5 @@
 Pod::Spec.new do |s|
-  s.name             = 'then'
+  s.name             = 'ThenAsync'
   s.version          = "4.2.1"
   s.summary          = "Elegant Promises for Swift"
   s.homepage         = "https://github.com/taledog/then"
