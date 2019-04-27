@@ -10,15 +10,13 @@ import Foundation
 
 public extension Promise {
     
-    @discardableResult
-    func then<X>(_ block: @escaping (T) -> X) -> Promise<X> {
+    @discardableResult func then<X>(_ block: @escaping (T) -> X) -> Promise<X> {
         let p = registerThen(block)
         tryStartInitialPromiseAndStartIfneeded()
         return p
     }
     
-    @discardableResult
-    func registerThen<X>(_ block: @escaping (T) -> X) -> Promise<X> {
+    @discardableResult func registerThen<X>(_ block: @escaping (T) -> X) -> Promise<X> {
         let p = Promise<X>()
         
         synchronize { state, blocks in
@@ -44,14 +42,12 @@ public extension Promise {
         return p
     }
     
-    @discardableResult
-    func then<X>(_ block: @escaping (T) -> Promise<X>) -> Promise<X> {
+    @discardableResult func then<X>(_ block: @escaping (T) -> Promise<X>) -> Promise<X> {
         tryStartInitialPromiseAndStartIfneeded()
         return registerThen(block)
     }
     
-    @discardableResult
-    func registerThen<X>(_ block: @escaping (T) -> Promise<X>)
+    @discardableResult  func registerThen<X>(_ block: @escaping (T) -> Promise<X>)
         -> Promise<X> {
             let p = Promise<X>()
             
@@ -76,13 +72,11 @@ public extension Promise {
             return p
     }
     
-    @discardableResult
-    func then<X>(_ promise: Promise<X>) -> Promise<X> {
+    @discardableResult func then<X>(_ promise: Promise<X>) -> Promise<X> {
         return then { _ in promise }
     }
     
-    @discardableResult
-    func registerThen<X>(_ promise: Promise<X>) -> Promise<X> {
+    @discardableResult func registerThen<X>(_ promise: Promise<X>) -> Promise<X> {
         return registerThen { _ in promise }
     }
     

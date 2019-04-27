@@ -10,14 +10,12 @@ import Foundation
 
 public extension Promise {
     
-    @discardableResult
-    func onError(_ block: @escaping (Error) -> Void) -> Promise<Void> {
+    @discardableResult func onError(_ block: @escaping (Error) -> Void) -> Promise<Void> {
         tryStartInitialPromiseAndStartIfneeded()
         return registerOnError(block)
     }
     
-    @discardableResult
-    func registerOnError(_ block: @escaping (Error) -> Void) -> Promise<Void> {
+    @discardableResult func registerOnError(_ block: @escaping (Error) -> Void) -> Promise<Void> {
         let p = Promise<Void>()
         passAlongFirstPromiseStartFunctionAndStateTo(p)
         syncStateWithCallBacks(

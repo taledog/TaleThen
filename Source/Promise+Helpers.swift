@@ -21,7 +21,7 @@ public extension Promise {
 }
 
 extension Promise where T == Void {
-    class func resolve() -> Promise<Void> {
+    public class func resolve() -> Promise<Void> {
         return Promise { resolve, _ in resolve() }
     }
 }
